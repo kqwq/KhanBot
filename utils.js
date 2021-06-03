@@ -1,0 +1,55 @@
+const fetch = require('node-fetch');
+
+/* Generate KAAS from username / password pair */
+export async function getKAAS(username, password) {
+  await fetch("https://www.khanacademy.org/api/internal/graphql/loginWithPasswordMutation", {
+      "credentials": "include",
+      "headers": {
+          "content-type": "application/json",
+          "x-ka-fkey": "lol",
+          "cookie": "fkey=lol"
+      },
+      "body": JSON.stringify({
+		  operationName: "loginWithPasswordMutation",
+		  query: 
+`mutation loginWithPasswordMutation($identifier: String!, $password: String!) {
+  loginWithPassword(identifier: $identifier, password: $password) {
+    user {
+      id
+      kaid
+      canAccessDistrictsHomepage
+      isTeacher
+      hasUnresolvedInvitations
+      transferAuthToken
+      preferredKaLocale {
+        id
+        kaLocale
+        status
+        __typename
+      }
+      __typename
+    }
+    isFirstLogin
+    error {
+      code
+      __typename
+    }
+    __typename
+  }
+}`,
+		variables: {
+			identifier: username,
+			password: password
+		}
+	  }),
+      "method": "POST",
+      "mode": "cors"
+  })
+  .then(res => res.headers.get("set-cookie"))
+  .then(data => {
+    console.log("KAAS secret: " + data.match(/KAAS=([\w-]+)/)[1] )
+  })
+}
+
+// Ask for user and password and output
+//! getKAAS(...prompt("User|Pass?").split("|"))
