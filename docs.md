@@ -20,7 +20,8 @@ fetchTTs(programID, function(data){
 5. Implement proxy for major APIs. (Like how Squishy did his multiplayer stuff)
 
 # To Do
-1. Ability to send guardian-like warnings to users
+1. Ability to send guardian-like warnings to users (tested, not possible)
 2. Ability to hide programs
 3. Ability to flag a program
-4. 
+4. Ability to spin-off a program
+5. 
