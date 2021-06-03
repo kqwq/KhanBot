@@ -4,7 +4,7 @@
 fetchTTs(programID, function(data){
     let keys = []
     for(let i of data.feedback){
-        keys.push(i.key)
+    keys.push(i.key)
     }
     for(let j of keys){
         deleteTipThanks(j, programID)
@@ -20,7 +20,5 @@ fetchTTs(programID, function(data){
 5. Implement proxy for major APIs. (Like how Squishy did his multiplayer stuff)
 
 # To Do
-1. Ability to send guardian-like warnings to users
-2. Ability to hide programs
-3. Ability to flag a program
-4. 
+- [ ] Ability to flag a program
+- [ ]
