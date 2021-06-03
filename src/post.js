@@ -13,25 +13,31 @@ let headers = {
 
 module.exports = {
 	comment: async (content, commentKey) => {
+		let body = {
+			text: content
+		}
 		try {
 			return await fetch(`https://www.khanacademy.org/api/internal/discussions/${commentKey}/replies`, {
 				"credentials": "include",
 				"headers": headers,
-				"body": `{ "text": "${content}" }`,
+				"body": JSON.stringify(body),
 				"method": "POST",
 				"mode": "cors"
 			})
 				.then(r => r.json());
 		} catch (e) {
-			cosnole.error(e);
+			console.error(e);
 		}
 	},
 
 	feedback: async (content, programID) => {
+		let body = {
+			text: content
+		}
 		try {
 			return await fetch(`https://www.khanacademy.org/api/internal/discussions/scratchpad/${programID.toString()}/comments`, {
 				"headers": headers,
-				"body": `{ "text": "${content}" }`,
+				"body": JSON.stringify(body),
 				"method": "POST",
 				"mode": "cors",
 				"credentials": "include"
@@ -54,7 +60,7 @@ module.exports = {
 			})
 				.then(r => r.json());
 		} catch (e) {
-			cosnole.error(e);
+			console.error(e);
 		}
 	},
 
@@ -136,5 +142,5 @@ module.exports = {
 		} catch (e) {
 			console.error(e);
 		}
-	}
+	},
 }
