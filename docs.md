@@ -19,3 +19,8 @@ fetchTTs(programID, function(data){
 4. Recreate codewars but users submit their solutions through the Tips&Thanks
 5. Implement proxy for major APIs. (Like how Squishy did his multiplayer stuff)
 
+# To Do
+1. Ability to send guardian-like warnings to users
+2. Ability to hide programs
+3. Ability to flag a program
+4. 

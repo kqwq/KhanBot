@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
 const { scratchpad } = require('./get.js');
- 
+
 const KAAS = process.env.KAAS, fkey = process.env.fkey;
 
 let baseUrl = "https://www.khanacademy.org/api/internal";

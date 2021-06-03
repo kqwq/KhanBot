@@ -1,6 +1,5 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
- 
 
 let baseUrl = "https://www.khanacademy.org/api/internal"
 let options = { headers: {}, method: "GET", mode: "cors" }
@@ -27,7 +26,7 @@ module.exports = {
 			}
 		},
 
-    discussion_stats: async (kaid) => {
+		discussion_stats: async (kaid) => {
 			try {
 				const res = await fetch(base("/user/discussion/statistics?casing=camel&kaid=" + kaid), options);
 				return await res.json();
@@ -36,7 +35,7 @@ module.exports = {
 			}
 		},
 
-    questions: async (kaid) => {
+		questions: async (kaid) => {
 			try {
 				const res = await fetch(base("/user/questions?casing=camel&kaid=" + kaid), options);
 				return await res.json();
@@ -45,7 +44,7 @@ module.exports = {
 			}
 		},
 
-    answers: async (kaid) => {
+		answers: async (kaid) => {
 			try {
 				const res = await fetch(base("/user/answers?casing=camel&kaid=" + kaid), options);
 				return await res.json();
@@ -54,7 +53,7 @@ module.exports = {
 			}
 		},
 
-    tips_thanks: async (kaid) => {
+		tips_thanks: async (kaid) => {
 			try {
 				const res = await fetch(base("/user/comments?casing=camel&kaid=" + kaid), options);
 				return await res.json();
@@ -63,7 +62,7 @@ module.exports = {
 			}
 		},
 
-    widgets: async (kaid) => {
+		widgets: async (kaid) => {
 			try {
 				const res = await fetch(base("/user/" + kaid + "/profile/widgets"), options);
 				return await res.json();
@@ -72,7 +71,7 @@ module.exports = {
 			}
 		},
 
-    comments: async (kaid) => {
+		comments: async (kaid) => {
 			try {
 				const res = await fetch(base("/user/replies/summary?casing=camel&kaid=" + kaid), options);
 				return await res.json();
@@ -81,7 +80,7 @@ module.exports = {
 			}
 		},
 
-    projects: async (kaid) => {
+		projects: async (kaid) => {
 			try {
 				const res = await fetch(base("/user/projects?casing=camel&kaid=" + kaid), options);
 				return await res.json();
@@ -90,7 +89,7 @@ module.exports = {
 			}
 		},
 
-    project_help: async (kaid) => {
+		project_help: async (kaid) => {
 			try {
 				const res = await fetch(base("/user/projectquestions?casing=camel&kaid=" + kaid), options);
 				return await res.json();
@@ -99,7 +98,7 @@ module.exports = {
 			}
 		},
 
-    project_answers: async (kaid) => {
+		project_answers: async (kaid) => {
 			try {
 				const res = await fetch(base("/user/projectanswers?casing=camel&kaid=" + kaid), options);
 				return await res.json();
@@ -108,7 +107,7 @@ module.exports = {
 			}
 		},
 
-    badges: async (kaid) => {
+		badges: async (kaid) => {
 			try {
 				const res = await fetch(base("/user/badges?casing=camel&kaid=" + kaid), options);
 				return await res.json();
@@ -127,6 +126,7 @@ module.exports = {
 				console.error(e);
 			}
 		},
+
 		recent: async (limit) => {
 			try {
 				const res = await fetch(base(`/scratchpads/top?casing=camel&sort=2&page=0&limit=${limit}&topic_id=xffde7c31`), options);
@@ -135,6 +135,7 @@ module.exports = {
 				console.error(e);
 			}
 		},
+
 		contests: async (limit) => {
 			try {
 				const res = await fetch(base(`/scratchpads/top?casing=camel&sort=4&page=0&limit=${limit}&topic_id=xffde7c31`), options);
@@ -143,6 +144,7 @@ module.exports = {
 				console.error(e);
 			}
 		},
+
 		top: async (limit) => {
 			try {
 				const res = await fetch(base(`/scratchpads/top?casing=camel&sort=5&page=0&limit=${limit}&topic_id=xffde7c31`), options);
@@ -153,7 +155,7 @@ module.exports = {
 		},
 	},
 	scratchpad: {
-    full_data: async (id) => {
+		full_data: async (id) => {
 			try {
 				const res = await fetch(base(`/show_scratchpad?scratchpad_id=${id}`), options);
 				return await res.json();
@@ -161,6 +163,7 @@ module.exports = {
 				console.error(e);
 			}
 		},
+
 		data: async (id) => {
 			try {
 				const res = await fetch(base(`/scratchpads/${id}`), options);
@@ -169,6 +172,7 @@ module.exports = {
 				console.error(e);
 			}
 		},
+
 		spinoffs: async (id, limit = 1000) => {
 			try {
 				const res = await fetch(base(`/scratchpads/Scratchpad:${id}/top-forks?limit=${limit}`), options);
@@ -177,6 +181,7 @@ module.exports = {
 				console.error(e);
 			}
 		},
+
 		questions: async (id, callback) => {
 			try {
 				const res = await fetch(base(`/discussions/scratchpad/${id}/questions?limit=1000&sort=1`), options);
@@ -185,7 +190,8 @@ module.exports = {
 				console.error(e);
 			}
 		},
-		feedback: async (id, callback, limit=1000) => {
+
+		feedback: async (id, callback, limit = 1000) => {
 			try {
 				const res = await fetch(base(`/discussions/scratchpad/${id}/comments?limit=${limit}&page=0&sort=2`), options);
 				return await res.json();
@@ -195,11 +201,9 @@ module.exports = {
 		},
 	},
 	discussion: {
-    thread: async (kaencrypted) => {
-      const res = await fetch(`${baseUrl}/discussions/${kaencrypted}/replies`, options)
-      return await res.json();
-    },
-
-    
-  }
+		thread: async (kaencrypted) => {
+			const res = await fetch(`${baseUrl}/discussions/${kaencrypted}/replies`, options)
+			return await res.json();
+		},
+	}
 }
