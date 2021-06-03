@@ -42,7 +42,7 @@ module.exports = {
 				"mode": "cors",
 				"credentials": "include"
 			})
-				.then(r => r.json);
+			.then(r => r.json());
 		} catch (e) {
 			console.error(e);
 		}
