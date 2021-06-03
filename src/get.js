@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
-
+ 
 
 let baseUrl = "https://www.khanacademy.org/api/internal"
 let options = { headers: {}, method: "GET", mode: "cors" }
