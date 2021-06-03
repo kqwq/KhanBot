@@ -1,28 +1,14 @@
-//for testing
-const ID = 6463987598180352;
-const bot = require('./src/core.js')
-
-bot.get.browse.top(5)
-
+(async () => {
+const ID = 6616827407400960;
+const botKaid = "kaid_3687779856757538252355877";
+const { get, post } = require('./src/core.js')
 
 
 
-
-
-
-/**  squishy's testing  **/
-//createProgram("//Test Project")
+var obj = await get.scratchpad.feedback(ID)
+console.log(obj)
 
 
 
 
-
-/*
-const express = require('express')
-const app = express()
-app.get("/", (req, res) => {
-    res.send("Hello World")
-})
-app.listen(8080, () => {
-  console.log(`App listening on ${8080}`)
-})*/
+})();
