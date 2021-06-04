@@ -1,0 +1,39 @@
+fetch("https://www.khanacademy.org/api/internal/discussions/flagentity?lang=en&_=210603-1443-95e483e86bac_1622768868852", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9",
+    "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
+    "sec-ch-ua": "\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"91\", \"Chromium\";v=\"91\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-ka-fkey": "[my key]"
+  },
+  "referrer": "https://www.khanacademy.org/computer-programming/i/4717170469060608",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "flag=inappropriate&justification=Please+remove+foul+language+from+Khan+to+keep+it+clean&entity_key=ag5zfmtoYW4tYWNhZGVteXIXCxIKU2NyYXRjaHBhZBiAgJ2x3cewCAw",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+});
+
+fetch("https://www.khanacademy.org/api/internal/discussions/flagentity?lang=en&_=210603-1443-95e483e86bac_1622766377569", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9",
+    "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
+    "sec-ch-ua": "\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"91\", \"Chromium\";v=\"91\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-ka-fkey": "[my key]"
+  },
+  "referrer": "https://www.khanacademy.org/computer-programming/i/6547641562775552",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "flag=inappropriate&justification=Cursing+is+not+something+that+should+be+on+Khan&entity_key=ag5zfmtoYW4tYWNhZGVteXIXCxIKU2NyYXRjaHBhZBiAgN3LueHQCww",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+});

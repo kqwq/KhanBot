@@ -14,31 +14,12 @@ let headers = {
 };
 
 module.exports = {
-	comment: async (content, commentKey) => {
+	comment: (content, commentKey) => {
 		try {
-			return await fetch(`https://www.khanacademy.org/api/internal/discussions/${commentKey}/replies`, {
+			return fetch(`${baseUrl}/discussions/${commentKey}/replies`, {
 				"headers": headers,
 				"body": JSON.stringify({text: content}),
 				"method": "POST",
-				"mode": "cors"
-			})
-				.then(r => r.json());
-		} catch (e) {
-			console.error(e);
-		}
-	},
-
-	feedback: async (content, programID) => {
-		let body = {
-			text: content
-		}
-		try {
-			return await fetch(`https://www.khanacademy.org/api/internal/discussions/scratchpad/${programID.toString()}/comments`, {
-				"headers": headers,
-				"body": JSON.stringify(body),
-				"method": "POST",
-				"mode": "cors",
-				"credentials": "include"
 			})
 			.then(r => r.json());
 		} catch (e) {
@@ -46,15 +27,25 @@ module.exports = {
 		}
 	},
 
-	del_feedback: async (kaencrypted, programID) => {
+	feedback: (content, programID) => {
 		try {
-			return await fetch(`https://www.khanacademy.org/api/internal/feedback/${kaencrypted}`, {
+			return fetch(`${baseUrl}/discussions/scratchpad/${programID.toString()}/comments`, {
 				"headers": headers,
-				"referrer": `https://www.khanacademy.org/cs/i/${programID}`,
+				"body": JSON.stringify({text: content}),
+				"method": "POST",
+			})
+				.then(r => r.json());
+		} catch (e) {
+			console.error(e);
+		}
+	},
+
+	del_feedback: (kaencrypted, programID) => {
+		try {
+			return fetch(`${baseUrl}/internal/feedback/${kaencrypted}`, {
+				"headers": headers,
 				"body": "",
 				"method": "DELETE",
-				"mode": "cors",
-				"credentials": "include"
 			})
 				.then(r => r.json());
 		} catch (e) {
@@ -74,11 +65,10 @@ module.exports = {
 					folds: []
 				}
 			}
-			return await fetch(`https://www.khanacademy.org/api/internal/scratchpads/${id}`, {
+			return await fetch(`${baseUrl}/scratchpads/${id}`, {
 				"headers": headers,
 				"body": JSON.stringify(body),
 				"method": "PUT",
-				"mode": "cors"
 			})
 				.then(r => r.json());
 		} catch (e) {
@@ -111,18 +101,16 @@ module.exports = {
 	 * Creates a new program with specified arguments
 	 * @param {string} code Code of the program to be created
 	 * @param {string} [thumbnailPath] Absolute path the the thumbnail of the created program. Defaults to blank.png
-	 * @param {string} [type] The type of the program to be created. Defaults to pjs.
-	 * @param {function} [callback] Callback that will be called when the request is succeessful. Defaults to consle.log
+	 * @param {string} [type] The type of the program to be created. Defaults to pjs.	 
 	 */
 	scratchpad: async (
 		code,
 		title = "New Program",
 		thumbnailPath = "./blank.png",
 		type = "pjs",
-		callback = console.log,
 	) => {
 		try {
-			return await fetch("https://www.khanacademy.org/api/internal/scratchpads", {
+			return await fetch(`${baseUrl}/scratchpads`, {
 				"headers": headers,
 				"body": JSON.stringify({
 					userAuthoredContentType: type,
@@ -134,7 +122,6 @@ module.exports = {
 					},
 				}),
 				"method": "POST",
-				"mode": "cors"
 			})
 				.then(r => r.json());
 		} catch (e) {
@@ -142,18 +129,6 @@ module.exports = {
 		}
 	},
 
-	/**
-	 * Flags a project with specified arguments
-	 */
-	flag: async (type, content, id) => {
-		fetch("https://www.khanacademy.org/api/internal/discussions/flagentity?lang=en&_=210603-1443-95e483e86bac_1622766377569", {
-		"headers": headers,
-		"referrer": "https://www.khanacademy.org/cs/i/"+id,
-		"body": "flag="+type+"&justification="+encodeURIComponent(content)+"&entity_key=ag5zfmtoYW4tYWNhZGVteXIXCxIKU2NyYXRjaHBhZBiAgN3LueHQCww",
-		"method": "POST",
-		"mode": "cors",
-		});
-	}
-
+	
 	
 }
