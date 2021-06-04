@@ -13,8 +13,6 @@ let headers = {
 	"cookie": `KAAS=${KAAS}; fkey=lol`
 };
 
-console.log("KAAS", KAAS)
-
 module.exports = {
 	comment: async (content, commentKey) => {
 		let body = {
@@ -68,7 +66,7 @@ module.exports = {
 		}
 	},
 
-	updateProgram: async (id, newCode, newTitle, newWidth, newHeight) => {
+	updateProgram: async (id, newCode, newTitle, newWidth, newHeight, thumbnailPath="./blank.png") => {
 		try {
 			let body = {
 				height: newWidth || 600,
