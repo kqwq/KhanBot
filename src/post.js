@@ -157,6 +157,22 @@ module.exports = {
 		} catch (e) {
 			console.error(e);
 		}
+	},
+
+	updateAvatar: async (avatar, kaid) => {
+		try {
+			return await fetch(`${baseUrl}/graphql/updateProfile?lang=en&_=210603-1727-7caba4343b8f_1622770114786`, {
+				"headers": headers,
+				"body": `{\"operationName\":\"updateProfile\",\"variables\":{\"avatarName\":\"${avatar}\",\"backgroundName\":\"cosmos\"},\"query\":\"mutation updateProfile($avatarName: String, $bio: String, $backgroundName: String, $nickname: String, $username: String) {\\n  setSettings(avatarName: $avatarName, bio: $bio, backgroundName: $backgroundName, nickname: $nickname, username: $username) {\\n    user {\\n      id\\n      avatar {\\n        name\\n        imageSrc\\n        __typename\\n      }\\n      bio\\n      background {\\n        name\\n        imageSrc\\n        __typename\\n      }\\n      nickname\\n      username\\n      __typename\\n    }\\n    errors {\\n      code\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n\"}`,
+				"referrer": "https://www.khanacademy.org/profile/" + kaid + "/courses",
+				"method": "POST",
+				"mode": "cors",
+				"credentials": "include"
+			})
+				.then(r => r.json());
+		} catch (e) {
+			console.error(e);
+		}
 	}
 
 }
