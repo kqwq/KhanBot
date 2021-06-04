@@ -165,6 +165,19 @@ module.exports = {
 		} catch (e) {
 			console.error(e);
 		}
+	},
+
+	askQuestion: async (content, programID) => {
+		try {
+			return await fetch(`${baseUrl}/discussions/scratchpad/${programID.toString()}/questions?casing=camel&lang=en&_=210603-1727-7caba4343b8f_1622814610284`, {
+				"headers": headers,
+				"referrer": "https://www.khanacademy.org/cs/i/"+programID,
+				"body": JSON.stringify({ text: content, shownLowQualityNotice: false, topic_slug: "computer-programming", "fromVideoAuthor": false }),
+				"method": "POST",
+			}).then(r => r.json());
+		} catch (e) {
+			console.error(e);
+		}
 	}
 
 }
