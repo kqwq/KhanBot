@@ -1,13 +1,8 @@
 {
-  "name": "KA-POST-test",
+  "name": "AutoKhan",
   "version": "1.0.0",
-  "description": "",
+  "description": "Automated API Library for running a bot on Khan Academy.",
   "main": "index.js",
-  "scripts": {
-    "build": "babel src -d lib",
-    "start": "node lib/index.js",
-    "watch": "babel src -d lib --watch"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",

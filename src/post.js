@@ -20,8 +20,7 @@ module.exports = {
 				"headers": headers,
 				"body": JSON.stringify({ text: content }),
 				"method": "POST",
-			})
-				.then(r => r.json());
+			}).then(r => r.json());
 		} catch (e) {
 			console.error(e);
 		}
@@ -33,8 +32,7 @@ module.exports = {
 				"headers": headers,
 				"body": JSON.stringify({ text: content }),
 				"method": "POST",
-			})
-				.then(r => r.json());
+			}).then(r => r.json());
 		} catch (e) {
 			console.error(e);
 		}
@@ -46,8 +44,7 @@ module.exports = {
 				"headers": headers,
 				"body": "",
 				"method": "DELETE",
-			})
-				.then(r => r.json());
+			}).then(r => r.json());
 		} catch (e) {
 			console.error(e);
 		}
@@ -69,8 +66,7 @@ module.exports = {
 				"headers": headers,
 				"body": JSON.stringify(body),
 				"method": "PUT",
-			})
-				.then(r => r.json());
+			}).then(r => r.json());
 		} catch (e) {
 			console.error(e);
 		}
@@ -90,8 +86,7 @@ module.exports = {
 				}),
 				"body": `entity_key=${data.key}&vote_type=1`,
 				"method": "POST",
-			})
-				.then(r = r.json());
+			}).then(r = r.json());
 		} catch (e) {
 			console.error(e);
 		}
@@ -122,22 +117,21 @@ module.exports = {
 					},
 				}),
 				"method": "POST",
-			})
-				.then(r => r.json());
+			}).then(r => r.json());
 		} catch (e) {
 			console.error(e);
 		}
 	},
 
-	deleteProgram: async(id) => {
+	deleteProgram: async (id) => {
 		try {
 			return await fetch(`${baseUrl}/scratchpads/${id}?client_dt=2021-06-03T20%3A44%3A53-05%3A00&lang=en&_=210603-1727-7caba4343b8f_1622771093947`, {
 				"headers": headers,
-				"referrer": "https://www.khanacademy.org/cs/i/"+id,
+				"referrer": "https://www.khanacademy.org/cs/i/" + id,
 				"body": null,
 				"method": "DELETE",
 			})
-				
+
 		} catch (e) {
 			console.error(e);
 		}
@@ -152,8 +146,7 @@ module.exports = {
 				"method": "POST",
 				"mode": "cors",
 				"credentials": "include"
-			})
-				.then(r => r.json());
+			}).then(r => r.json());
 		} catch (e) {
 			console.error(e);
 		}
@@ -168,8 +161,7 @@ module.exports = {
 				"method": "POST",
 				"mode": "cors",
 				"credentials": "include"
-			})
-				.then(r => r.json());
+			}).then(r => r.json());
 		} catch (e) {
 			console.error(e);
 		}

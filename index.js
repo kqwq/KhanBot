@@ -1,7 +1,7 @@
 const { updateProgram, updateAvatar } = require('./src/post.js');
 
 (async () => {
-    const { get, post } = require('./src/core.js');
+    const { get, post, utils } = require('./src/core.js');
     const dotenv = require('dotenv');
     dotenv.config()
     /* Test code */
