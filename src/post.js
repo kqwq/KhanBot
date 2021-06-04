@@ -11,6 +11,8 @@ let headers = {
 	"cookie": `KAAS=${KAAS}; fkey=lol`
 };
 
+console.log("KAAS", KAAS)
+
 module.exports = {
 	comment: async (content, commentKey) => {
 		let body = {
@@ -42,7 +44,7 @@ module.exports = {
 				"mode": "cors",
 				"credentials": "include"
 			})
-			.then(r => r.json());
+			.then(console.log/*r => r.json()*/);
 		} catch (e) {
 			console.error(e);
 		}
