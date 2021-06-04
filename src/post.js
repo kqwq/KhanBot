@@ -53,7 +53,18 @@ module.exports = {
 		}
 	},
 
-	updateProgram: async (id, newCode, newTitle, newWidth=600, newHeight=600, thumbnailPath="./blank.png") => {
+	/**
+	 * 
+	 * @param {*} id 
+	 * @param {*} newCode 
+	 * @param {*} newTitle 
+	 * @param {*} newWidth 
+	 * @param {*} newHeight 
+	 * @param {*} thumbnailPath 
+	 * @returns 
+	 */
+	updateProgram: (id, newCode, newTitle, newWidth=600, newHeight=600, thumbnailPath="../assets/blank.png") => {
+console.log(id)
 		try {
 			let body = {
 				height: newWidth,
@@ -65,7 +76,7 @@ module.exports = {
 					folds: []
 				}
 			}
-			return await fetch(`${baseUrl}/scratchpads/${id}`, {
+			return  fetch(`${baseUrl}/scratchpads/${id}`, {
 				"headers": headers,
 				"body": JSON.stringify(body),
 				"method": "PUT",
@@ -106,7 +117,7 @@ module.exports = {
 	scratchpad: async (
 		code,
 		title = "New Program",
-		thumbnailPath = "./blank.png",
+		thumbnailPath = "..assets/blank.png",
 		type = "pjs",
 	) => {
 		try {

@@ -6,7 +6,8 @@
   "scripts": {
     "build": "babel src -d lib",
     "start": "node lib/index.js",
-    "watch": "babel src -d lib --watch"
+    "watch": "babel src -d lib --watch",
+    "dev":"nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +17,8 @@
     "express": "^4.17.1",
     "fetch": "^1.1.0",
     "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
