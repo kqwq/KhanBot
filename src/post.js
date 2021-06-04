@@ -1,5 +1,7 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
+const dotenv = require('dotenv');
+dotenv.config()
 const { scratchpad } = require('./get.js');
 
 const KAAS = process.env.KAAS, fkey = process.env.fkey;
@@ -44,7 +46,7 @@ module.exports = {
 				"mode": "cors",
 				"credentials": "include"
 			})
-			.then(console.log/*r => r.json()*/);
+			.then(r => r.json());
 		} catch (e) {
 			console.error(e);
 		}
