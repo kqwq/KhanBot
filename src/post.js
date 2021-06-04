@@ -18,10 +18,10 @@ module.exports = {
 		try {
 			return fetch(`${baseUrl}/discussions/${commentKey}/replies`, {
 				"headers": headers,
-				"body": JSON.stringify({text: content}),
+				"body": JSON.stringify({ text: content }),
 				"method": "POST",
 			})
-			.then(r => r.json());
+				.then(r => r.json());
 		} catch (e) {
 			console.error(e);
 		}
@@ -31,7 +31,7 @@ module.exports = {
 		try {
 			return fetch(`${baseUrl}/discussions/scratchpad/${programID.toString()}/comments`, {
 				"headers": headers,
-				"body": JSON.stringify({text: content}),
+				"body": JSON.stringify({ text: content }),
 				"method": "POST",
 			})
 				.then(r => r.json());
@@ -53,7 +53,7 @@ module.exports = {
 		}
 	},
 
-	updateProgram: async (id, newCode, newTitle, newWidth=600, newHeight=600, thumbnailPath="./blank.png") => {
+	updateProgram: async (id, newCode, newTitle, newWidth = 600, newHeight = 600, thumbnailPath = "./blank.png") => {
 		try {
 			let body = {
 				height: newWidth,
@@ -129,6 +129,34 @@ module.exports = {
 		}
 	},
 
-	
-	
+	deleteProgram: async(id) => {
+		try {
+			return await fetch(`${baseUrl}/scratchpads/${id}?client_dt=2021-06-03T20%3A44%3A53-05%3A00&lang=en&_=210603-1727-7caba4343b8f_1622771093947`, {
+				"headers": headers,
+				"referrer": "https://www.khanacademy.org/cs/i/"+id,
+				"body": null,
+				"method": "DELETE",
+			})
+				
+		} catch (e) {
+			console.error(e);
+		}
+	},
+
+	updateProfile: async (nickname, username, bio, kaid) => {
+		try {
+			return await fetch(`${baseUrl}/graphql/updateProfile?lang=en&_=210603-1727-7caba4343b8f_1622770114786`, {
+				"headers": headers,
+				"body": `{\"operationName\":\"updateProfile\",\"variables\":{\"bio\":\"${bio}\",\"nickname\":\"${nickname}\",\"username\":\"${username}\"},\"query\":\"mutation updateProfile($avatarName: String, $bio: String, $backgroundName: String, $nickname: String, $username: String) {\\n  setSettings(avatarName: $avatarName, bio: $bio, backgroundName: $backgroundName, nickname: $nickname, username: $username) {\\n    user {\\n      id\\n      avatar {\\n        name\\n        imageSrc\\n        __typename\\n      }\\n      bio\\n      background {\\n        name\\n        imageSrc\\n        __typename\\n      }\\n      nickname\\n      username\\n      __typename\\n    }\\n    errors {\\n      code\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n\"}`,
+				"referrer": "https://www.khanacademy.org/profile/" + kaid + "/courses",
+				"method": "POST",
+				"mode": "cors",
+				"credentials": "include"
+			})
+				.then(r => r.json());
+		} catch (e) {
+			console.error(e);
+		}
+	}
+
 }
