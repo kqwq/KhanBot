@@ -15,14 +15,10 @@ let headers = {
 
 module.exports = {
 	comment: async (content, commentKey) => {
-		let body = {
-			text: content
-		}
 		try {
 			return await fetch(`https://www.khanacademy.org/api/internal/discussions/${commentKey}/replies`, {
-				"credentials": "include",
 				"headers": headers,
-				"body": JSON.stringify(body),
+				"body": JSON.stringify({text: content}),
 				"method": "POST",
 				"mode": "cors"
 			})
@@ -66,11 +62,11 @@ module.exports = {
 		}
 	},
 
-	updateProgram: async (id, newCode, newTitle, newWidth, newHeight, thumbnailPath="./blank.png") => {
+	updateProgram: async (id, newCode, newTitle, newWidth=600, newHeight=600, thumbnailPath="./blank.png") => {
 		try {
 			let body = {
-				height: newWidth || 600,
-				width: newHeight || 600,
+				height: newWidth,
+				width: newHeight,
 				title: newTitle || "New program",
 				revision: {
 					code: newCode,
@@ -145,4 +141,19 @@ module.exports = {
 			console.error(e);
 		}
 	},
+
+	/**
+	 * Flags a project with specified arguments
+	 */
+	flag: async (type, content, id) => {
+		fetch("https://www.khanacademy.org/api/internal/discussions/flagentity?lang=en&_=210603-1443-95e483e86bac_1622766377569", {
+		"headers": headers,
+		"referrer": "https://www.khanacademy.org/cs/i/"+id,
+		"body": "flag="+type+"&justification="+encodeURIComponent(content)+"&entity_key=ag5zfmtoYW4tYWNhZGVteXIXCxIKU2NyYXRjaHBhZBiAgN3LueHQCww",
+		"method": "POST",
+		"mode": "cors",
+		});
+	}
+
+	
 }
