@@ -26,15 +26,7 @@ fetchTTs(programID, function (data) {
 5. Implement proxy for major APIs. (Like how Squishy did his multiplayer stuff)
 
 # To Do
-<<<<<<< HEAD:ideas.md
 1. Ability to spin-off a program
 2. Ability to get Energy Points
 3. 
 =======
-
--   [x] Ability to send guardian-like warnings to users (tested, not possible)
--   [ ] Ability to hide programs
--   [ ] Ability to flag a program
--   [ ] Ability to spin-off a program
--   [ ]
->>>>>>> 80be0c5fc8db0e828e83e0cef02c6ebc749bd75a:docs.md
