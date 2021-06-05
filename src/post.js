@@ -3,8 +3,7 @@ const fs = require('fs');
 const dotenv = require('dotenv');
 dotenv.config()
 const { scratchpad } = require('./get.js');
-
-const KAAS = process.env.KAAS, fkey = process.env.fkey;
+const { KAAS, fkey } = require('./core.js')
 
 let baseUrl = "https://www.khanacademy.org/api/internal";
 let headers = {
