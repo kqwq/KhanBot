@@ -1,5 +1,3 @@
-<<<<<<< HEAD:ideas.md
-=======
 # Docs
 
 ## Delete all comments (only bot's messages) from a program
@@ -16,7 +14,6 @@ fetchTTs(programID, function (data) {
 });
 ```
 
->>>>>>> 80be0c5fc8db0e828e83e0cef02c6ebc749bd75a:docs.md
 # Ideas
 
 1. Fetches a random post from Dev.to and posts it as a tutorial every week on Khan.
@@ -24,6 +21,11 @@ fetchTTs(programID, function (data) {
 3. Update a program containing popular stock/crypto prices that can be accessed via the API by other KA programs. Or weather data in major cities.
 4. Recreate codewars but users submit their solutions through the Tips&Thanks
 5. Implement proxy for major APIs. (Like how Squishy did his multiplayer stuff)
+6. Have a competition/club directory
+7. Tools for managing clubs or larger projects
+8. Feature little known projects
+9. Execute code in docker container?
+10. Data consolidation of posts (I dunno, for ML or something?)
 
 # To Do
 1. Ability to spin-off a program
