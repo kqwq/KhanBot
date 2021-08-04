@@ -7,15 +7,15 @@ const { KAAS, fkey } = require('./core.js')
 
 let baseUrl = "https://www.khanacademy.org/api/internal";
 let headers = {
-	"content-type": "application/json",
-	"x-ka-fkey": `lol`,
-	"cookie": `KAAS=${KAAS}; fkey=lol`
+  "content-type": "application/json",
+  "x-ka-fkey": `lol`,
+  "cookie": `KAAS=${process.env.KAAS}; fkey=lol`
 };
 
 module.exports = {
-	comment: (content, commentKey) => {
+	comment: async (content, commentKey) => {
 		try {
-			return fetch(`${baseUrl}/discussions/${commentKey}/replies`, {
+			return await fetch(`${baseUrl}/discussions/${commentKey}/replies`, {
 				"headers": headers,
 				"body": JSON.stringify({ text: content }),
 				"method": "POST",
@@ -26,20 +26,21 @@ module.exports = {
 	},
 
 	feedback: (content, programID) => {
-		try {
 			return fetch(`${baseUrl}/discussions/scratchpad/${programID.toString()}/comments`, {
 				"headers": headers,
 				"body": JSON.stringify({ text: content }),
-				"method": "POST",
-			}).then(r => r.json());
-		} catch (e) {
-			console.error(e);
-		}
+				"referrer": "https://www.khanacademy.org/cs/i/"+programID,
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "{\"text\":\""+content+"\",\"shownLowQualityNotice\":false,\"topic_slug\":\"computer-programming\",\"fromVideoAuthor\":false}",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+			})
 	},
 
-	del_feedback: (kaencrypted, programID) => {
+	del_feedback: async (kaencrypted, programID) => {
 		try {
-			return fetch(`${baseUrl}/internal/feedback/${kaencrypted}`, {
+			return await fetch(`${baseUrl}/internal/feedback/${kaencrypted}`, {
 				"headers": headers,
 				"body": "",
 				"method": "DELETE",
@@ -49,7 +50,7 @@ module.exports = {
 		}
 	},
 
-	updateProgram: async (id, newCode, newTitle, newWidth = 600, newHeight = 600, thumbnailPath = "./blank.png") => {
+	updateProgram: async (id, newCode, newTitle, newWidth = 600, newHeight = 600, base64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=") => {
 		try {
 			let body = {
 				height: newWidth,
@@ -57,7 +58,7 @@ module.exports = {
 				title: newTitle || "New program",
 				revision: {
 					code: newCode,
-					image_url: `data:image/png;base64,${fs.readFileSync(thumbnailPath, 'base64')}`,
+					image_url: base64,
 					folds: []
 				}
 			}
@@ -80,12 +81,12 @@ module.exports = {
 		try {
 			const data = await scratchpad.data(id);
 			return await fetch("https://www.khanacademy.org/api/internal/discussions/voteentity", {
-				"headers": Object.assign({}, header, {
+				"headers": Object.assign({}, headers, {
 					"content-type": "application/x-www-form-urlencoded;charset=UTF-8"
 				}),
 				"body": `entity_key=${data.key}&vote_type=1`,
 				"method": "POST",
-			}).then(r = r.json());
+			}).then(r => r.json());
 		} catch (e) {
 			console.error(e);
 		}
@@ -100,7 +101,7 @@ module.exports = {
 	scratchpad: async (
 		code,
 		title = "New Program",
-		thumbnailPath = "./blank.png",
+		base64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=",
 		type = "pjs",
 	) => {
 		try {
@@ -112,7 +113,7 @@ module.exports = {
 					revision: {
 						code: code,
 						folds: [],
-						image_url: `data:image/png;base64,${fs.readFileSync(thumbnailPath, 'base64')}`,
+						image_url: `${base64}`,
 					},
 				}),
 				"method": "POST",
