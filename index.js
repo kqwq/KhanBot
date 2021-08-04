@@ -1,10 +1,14 @@
+const express = require("express");
+const app = express();
 (async () => {
     const { get, post, utils } = require('./src/core.js');
 
-
-
+    //code goes here
     
 })();
-const fetch = require("node-fetch")
-var request = require('request').defaults({ encoding: null });
 
+
+app.get("/", (req, res) => {
+  res.send("AutoKhan bot Up and Running")
+})
+app.listen(8080);

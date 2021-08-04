@@ -182,16 +182,16 @@ module.exports = {
 			}
 		},
 
-		questions: async (id, callback) => {
+		questions: async (id, limit = 1000) => {
 			try {
-				const res = await fetch(base(`/discussions/scratchpad/${id}/questions?limit=1000&sort=1`), options);
+				const res = await fetch(base(`/discussions/scratchpad/${id}/questions?limit=${limit}&sort=1`), options);
 				return await res.json();
 			} catch (e) {
 				console.error(e);
 			}
 		},
 
-		feedback: async (id, callback, limit = 1000) => {
+		feedback: async (id, limit = 1000) => {
 			try {
 				const res = await fetch(base(`/discussions/scratchpad/${id}/comments?limit=${limit}&page=0&sort=2`), options);
 				return await res.json();
