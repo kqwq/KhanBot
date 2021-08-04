@@ -184,3 +184,86 @@ Returns all the comments in a thread.
 ```javascript
 console.log(await get.discussion.thread("kaencrypted_ecac7f3960e834a2b08fe89dcf64d9dc_d87d42f98e6da3bdb170c25e7d466841cd5377c29a38ffdf8c7faeb7beb59cc00034ba66237f571b44cbfda37cbebf14192e56b13019ae7e8413950ac18addc0745a9d0faade63259c76b28a6c67798711a0df1b79ef21990dd576dcba0d587f537335f177b9b656582be76d35ba0a3e5cdf9ebf77ffb1db47bbe1fc59d3808953a41466ae212b1fdcd78923f520eaef573dcc2923e643c23e24abb62d2be399498ac10d9854b787c4f3c06ad4c8e4c995fa75894303bce6a5b6fcdf6d02c4e2"))
 ```
+
+## Post Requests
+Now comes the fun part - How your bot will actually run.
+
+#### Comment in a Thread `post.comment(content: string, commentKey: string)`
+```javascript
+console.log(await post.comment("Comment Content", "kaencrypted_ecac7f3960e834a2b08fe..."))
+```
+
+#### Post a T&T/feedback on a project `post.feedback(content: string, programID: number)`
+```javascript
+console.log(await post.feedback("Feedback Content", 5961976947621888))
+```
+
+#### Delete previously-posted T&T/feedback `post.del_feedback(kaencrypted: string, programID: number)`
+```javascript
+console.log(await post.del_feedback("kaencrypted_ecac7f3960e834a2b08fe...", 5961976947621888))
+```
+
+#### Vote Program `post.voteProgram(programID: number)`
+```javascript
+console.log(await post.voteProgram(5961976947621888))
+```
+
+#### Create Program `post.scratchpad(code: string, title: string, type: string, base64: string)`
+`base64` is the screenshot of the program.  You can customize it or leave the param empty as it sets your program's screenshot to a plain white background by default.  `type` has to be either "pjs" or "webpage".  Default set to "pjs".
+```javascript
+console.log(await post.scratchpad("//code here", "title!!", "data:image/png;base64,iVBOR...", "pjs"))
+```
+
+#### Update Program `post.updateProgram(id: number, newCode: string, newTitle: string, newWidth: number, newHeight: number, base64: string)`
+`newWidth` and `newHeight` are set to 400 by default and `base64` sets up a blank white screenshot by default.
+```javascript
+console.log(await post.updateProgram(5961976947621888, "//new code here", "new title!!", 600, 600, "data:image/png;base64,iVBOR..."))
+```
+
+#### Delete Program `post.deleteProgram(programID: number)`
+```javascript
+console.log(await post.deleteProgram(5961976947621888))
+```
+
+#### Update Profile `post.updateProfile(nickname: string, username: string, bio: string, kaid: string)`
+```javascript
+console.log(await post.updateProfile("AutoKhan [Bot]", "AutoKhanBot", "I am a bot - This is my bio", "kaid_5019699394927714061666523"))
+```
+
+#### Update Avatar `post.updateAvatar(avatar: string, kaid: string)`
+```javascript
+console.log(await post.updateAvatar("piceratops_ultimate_style", "kaid_5019699394927714061666523"))
+```
+
+#### Ask Question on a project `post.askQuestion(content: string, programID: number)`
+```javascript
+console.log(await post.askQuestion("Question Content", 5961976947621888))
+```
+
+#### Answer Question `post.answerQuestion(content: string, commentKey: string)`
+```javascript
+console.log(await post.answerQuestion("Answer Content", "kaencrypted_ecac7f3960e834a2b08fe..."))
+```
+
+## Utilities
+
+#### getKAAS `utils.getKAAS(username: string, password: string)`
+logs your account token to the console
+```javascript
+utils.getKAAS("username","password123")
+```
+
+## Examples
+
+#### Timer
+```javascript
+//posts a feedback post on a program every minute
+setInterval(async () => {
+  await post.feedback("I post feedback every minute on the same program!!", 5961976947621888)
+}, 60000);
+```
+
+No more examples for now.  Sorry!!
+
+## Collaborators (github usernames):
+Conner1115 (LeviathanProgramming), kqwq (Squishy), Phi-001 (Phi)

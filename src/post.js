@@ -101,8 +101,8 @@ module.exports = {
 	scratchpad: async (
 		code,
 		title = "New Program",
-		base64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=",
 		type = "pjs",
+    base64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=",
 	) => {
 		try {
 			return await fetch(`${baseUrl}/scratchpads`, {
